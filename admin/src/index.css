@@ -1,3 +1,98 @@
 @plugin "daisyui";
 @import "tailwindcss";
 
+/*:root {*/
+/*    --color-forest-green-50: oklch(95.3% 0.03546 154.36);*/
+/*    --color-forest-green-100: oklch(93.019% 0.05379 152.61);*/
+/*    --color-forest-green-200: oklch(88.496% 0.09295 150.09);*/
+/*    --color-forest-green-300: oklch(84.195% 0.133 147.89);*/
+/*    --color-forest-green-400: oklch(80.183% 0.173 145.7);*/
+/*    --color-forest-green-500: oklch(76.576% 0.20816 143.96);*/
+/*    --color-forest-green-600: oklch(72.02% 0.22168 142.84);*/
+/*    --color-forest-green-700: oklch(63.04% 0.19031 142.35);*/
+/*    --color-forest-green-800: oklch(50.154% 0.14648 141.69);*/
+/*    --color-forest-green-900: oklch(36.287% 0.10002 140.99);*/
+/*    --color-forest-green-950: oklch(28.668% 0.07447 140.26);*/
+/*}*/
+
+/*:root {*/
+/*    --color-christi: oklch(68.899% 0.21829 140.26);*/
+/*    --color-christi-50: oklch(99.766% 0.00445 134.85);*/
+/*    --color-christi-100: oklch(97.757% 0.03066 137.82);*/
+/*    --color-christi-200: oklch(94.245% 0.08308 138.22);*/
+/*    --color-christi-300: oklch(91.032% 0.13515 138.19);*/
+/*    --color-christi-400: oklch(87.965% 0.18087 138.49);*/
+/*    --color-christi-500: oklch(85.509% 0.22158 138.91);*/
+/*    --color-christi-600: oklch(83.514% 0.25009 139.6);*/
+/*    --color-christi-700: oklch(79.186% 0.25216 140.32);*/
+/*    --color-christi-800: oklch(68.899% 0.21829 140.26);*/
+/*    --color-christi-900: oklch(54.167% 0.16927 140.08);*/
+/*    --color-christi-950: oklch(46.717% 0.14477 139.92);*/
+/*}*/
+
+/* tus variables OKLCH definidas primero (globales) */
+:root {
+    --color-christi-50: oklch(99.766% 0.00445 134.85);
+    --color-christi-100: oklch(97.757% 0.03066 137.82);
+    --color-christi-200: oklch(94.245% 0.08308 138.22);
+    --color-christi-300: oklch(91.032% 0.13515 138.19);
+    --color-christi-400: oklch(87.965% 0.18087 138.49);
+    --color-christi-500: oklch(85.509% 0.22158 138.91);
+    --color-christi-600: oklch(83.514% 0.25009 139.6);
+    --color-christi-700: oklch(79.186% 0.25216 140.32);
+    --color-christi-800: oklch(68.899% 0.21829 140.26);
+    --color-christi-900: oklch(54.167% 0.16927 140.08);
+    --color-christi-950: oklch(46.717% 0.14477 139.92);
+}
+
+/* importa daisyui y el plugin de temas */
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+    name: "vectraChristi";
+    default: true;        /* hace que este tema sea el default al compilar */
+    prefersdark: false;   /* si quieres que sea dark por defecto pon true */
+    color-scheme: light;
+
+    /* aquí enlazamos los roles de DaisyUI con tus variables OKLCH */
+    --color-base-100: var(--color-christi-50);
+    --color-base-200: var(--color-christi-100);
+    --color-base-300: var(--color-christi-200);
+    --color-base-content: var(--color-christi-950);
+
+    --color-primary: var(--color-christi-700);
+    --color-primary-content: #ffffff;
+
+    --color-secondary: var(--color-christi-500);
+    --color-secondary-content: #ffffff;
+
+    --color-accent: var(--color-christi-300);
+    --color-accent-content: var(--color-christi-950);
+
+    --color-neutral: var(--color-christi-900);
+    --color-neutral-content: var(--color-christi-100);
+
+    --color-info: oklch(75% 0.18 220);
+    --color-info-content: #ffffff;
+
+    --color-success: var(--color-christi-600);
+    --color-success-content: #ffffff;
+
+    --color-warning: oklch(85% 0.18 85);
+    --color-warning-content: #111827;
+
+    --color-error: oklch(60% 0.19 25);
+    --color-error-content: #ffffff;
+
+    /* border radius / sizes (opcional, copia ejemplo doc) */
+    --radius-selector: 1rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+
+    --border: 1px;
+
+    --depth: 1;
+    --noise: 0;
+}
