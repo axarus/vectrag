@@ -8,6 +8,8 @@ type Field struct {
 	Type        FieldType
 	Description string
 	Unique      bool
+	Required    bool
+	Status      Status
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }
