@@ -37,7 +37,7 @@ func ListFieldTypes() []string {
 
 	return types
 }
-func GetFlieldSQLType(ft FieldType) (string, error) {
+func GetFieldSQLType(ft FieldType) (string, error) {
 	switch ft {
 	case FieldString:
 		return "VARCHAR(255)", nil
