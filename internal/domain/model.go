@@ -7,6 +7,6 @@ type Model struct {
 	Description string
 	Fields      []Field
 	// Relations   []Relation
-	IsActive      bool
+	Status        Status
 	SchemaVersion int // TODO: This could be a string, what could be the best way to handle this?
 }
