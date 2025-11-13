@@ -1,7 +1,5 @@
 package domain
 
-import "fmt"
-
 type FieldType string
 
 const (
@@ -36,24 +34,4 @@ func ListFieldTypes() []string {
 	}
 
 	return types
-}
-func GetFieldSQLType(ft FieldType) (string, error) {
-	switch ft {
-	case FieldString:
-		return "VARCHAR(255)", nil
-	case FieldText:
-		return "TEXT", nil
-	case FieldNumber:
-		return "DOUBLE PRECISION", nil
-	case FieldBoolean:
-		return "BOOLEAN", nil
-	case FieldDate:
-		return "DATE", nil
-	case FieldDateTime:
-		return "TIMESTAMP", nil
-	case FieldRelation:
-		return "VARCHAR(255)", nil
-	default:
-		return "", fmt.Errorf("unsupported field type: %s", ft)
-	}
 }
