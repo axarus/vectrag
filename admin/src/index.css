@@ -103,3 +103,24 @@
     --color-error: #e45858;
 }
 
+@plugin "daisyui/theme" {
+    name: "tealContrast";
+    default: false;
+    color-scheme: light;
+
+    --color-base-100: #484848;
+    --color-base-200: #006465;
+    --color-base-300: #0f928c;
+    --color-base-content: #ffffff;
+
+    --color-primary: #00c9d2;
+    --color-primary-content: #ffffff;
+    --color-secondary: #beee3b;
+    --color-accent: #0f928c;
+    --color-neutral: #484848;
+    --color-neutral-content: #black;
+
+    --color-success: #00c9d2;
+    --color-warning: #beee3b;
+    --color-error: #0f928c;
+}
