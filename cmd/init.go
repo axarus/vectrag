@@ -1,27 +1,62 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
-
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
+type InitConfig struct {
+	Name     string
+	Port     int
+	Database string
+}
+
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Use:   "init [project-name]",
+	Short: "Initialize a new VectraG project",
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		projectPrompt := promptui.Prompt{
+			Label:   "Project name",
+			Default: "my-app",
+		}
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
+		projectName, err := projectPrompt.Run()
+		if err != nil {
+			return err
+		}
+
+		portPrompt := promptui.Prompt{
+			Label:   "Port",
+			Default: "3000",
+			Validate: func(input string) error {
+				if input == "" {
+					return fmt.Errorf("the port cannot be empty")
+				}
+				return nil
+			},
+		}
+		port, err := portPrompt.Run()
+		if err != nil {
+			return err
+		}
+		dbPrompt := promptui.Select{
+			Label:     "Database",
+			Items:     []string{"PostgreSQL", "MySQL", "SQLite"},
+			CursorPos: 2,
+		}
+
+		_, database, err := dbPrompt.Run()
+		if err != nil {
+			return err
+		}
+
+		return nil
 	},
 }
 
