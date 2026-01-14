@@ -1,27 +1,27 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
 // developCmd represents the develop command
 var developCmd = &cobra.Command{
 	Use:   "develop",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Run VectraG in development mode",
+	Long: `Run VectraG in development mode.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+The develop command starts VectraG with development-friendly settings and tools, allowing you to:
+
+- Create, update, and delete content models
+- Experiment with schema changes safely
+- Iterate quickly during local development
+
+This mode is intended for local environments and early-stage development.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("develop called")
+
 	},
 }
 
