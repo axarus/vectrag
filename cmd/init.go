@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strconv"
+	"strings"
 
 	"github.com/AllanXavierRA/vectrag/internal/application"
 	"github.com/manifoldco/promptui"
@@ -39,6 +40,10 @@ This command will create:
 			Validate: func(input string) error {
 				if input == "" {
 					return fmt.Errorf("project name cannot be empty")
+				}
+
+				if strings.Contains(input, " ") {
+					return fmt.Errorf("project name cannot contain spaces")
 				}
 				return nil
 			},
