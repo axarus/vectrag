@@ -33,22 +33,24 @@ func (s *InitService) InitializeProject(path string, config InitConfig) error {
 		return fmt.Errorf("failed to resolve path: %w", err)
 	}
 
+	workDir := filepath.Join(absPath, config.ProjectName)
+
 	// Check if directory exists
-	if info, err := os.Stat(absPath); err == nil {
+	if info, err := os.Stat(workDir); err == nil {
 		if !info.IsDir() {
-			return fmt.Errorf("path exists but is not a directory: %s", absPath)
+			return fmt.Errorf("path exists but is not a directory: %s", workDir)
 		}
 		// Check if directory is empty
-		entries, err := os.ReadDir(absPath)
+		entries, err := os.ReadDir(workDir)
 		if err != nil {
 			return fmt.Errorf("failed to read directory: %w", err)
 		}
 		if len(entries) > 0 {
-			return fmt.Errorf("directory is not empty: %s", absPath)
+			return fmt.Errorf("directory is not empty: %s", workDir)
 		}
 	} else if os.IsNotExist(err) {
 		// Create directory if it doesn't exist
-		if err := os.MkdirAll(absPath, 0755); err != nil {
+		if err := os.MkdirAll(workDir, 0755); err != nil {
 			return fmt.Errorf("failed to create directory: %w", err)
 		}
 	} else {
@@ -56,12 +58,12 @@ func (s *InitService) InitializeProject(path string, config InitConfig) error {
 	}
 
 	// Create directory structure
-	if err := s.createDirectoryStructure(absPath); err != nil {
+	if err := s.createDirectoryStructure(workDir); err != nil {
 		return fmt.Errorf("failed to create directory structure: %w", err)
 	}
 
 	// Generate configuration files
-	if err := s.generateConfigFiles(absPath, config); err != nil {
+	if err := s.generateConfigFiles(workDir, config); err != nil {
 		return fmt.Errorf("failed to generate config files: %w", err)
 	}
 
