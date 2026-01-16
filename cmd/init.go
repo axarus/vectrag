@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"path/filepath"
 	"strconv"
 
 	"github.com/AllanXavierRA/vectrag/internal/application"
@@ -100,9 +101,11 @@ This command will create:
 			return fmt.Errorf("failed to initialize project: %w", err)
 		}
 
+		projectPath := filepath.Join(path, projectName)
+
 		fmt.Println("✅ Project initialized successfully!")
 		fmt.Printf("\nNext steps:\n")
-		fmt.Printf("  1. Navigate to the project: cd %s\n", path)
+		fmt.Printf("  1. Navigate to the project: cd %s\n", projectPath)
 		fmt.Printf("  2. Start development: vectrag develop\n")
 
 		return nil
