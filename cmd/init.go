@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AllanXavierRA/vectrag/internal/application"
+	"github.com/axarus/vectrag/internal/application"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )

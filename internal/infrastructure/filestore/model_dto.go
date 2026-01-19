@@ -3,7 +3,7 @@ package filestore
 import (
 	"time"
 
-	"github.com/AllanXavierRA/vectrag/internal/domain"
+	"github.com/axarus/vectrag/internal/domain"
 )
 
 type modelDTO struct {

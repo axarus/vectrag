@@ -1,6 +1,6 @@
 package application
 
-import "github.com/AllanXavierRA/vectrag/internal/domain"
+import "github.com/axarus/vectrag/internal/domain"
 
 type ModelService struct {
 	repo domain.Repository
