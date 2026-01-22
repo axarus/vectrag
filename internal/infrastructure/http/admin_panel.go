@@ -2,12 +2,19 @@ package http
 
 import (
 	"errors"
-	"github.com/axarus/vectrag/admin"
 	"io/fs"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/axarus/vectrag/admin"
 )
+
+type AdminHandlerProvider struct{}
+
+func (AdminHandlerProvider) Handler() http.Handler {
+	return AdminHandler()
+}
 
 // AdminHandler returns an HTTP handler that serves the admin panel.
 // It serves static files from the embedded "dist" directory, and falls back to index.html

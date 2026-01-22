@@ -3,10 +3,15 @@ package http
 import (
 	"fmt"
 	"net"
-	"os"
 )
 
-func GetAvailablePort(basePort int) (int, net.Listener) {
+type ListenerProvider struct{}
+
+func (ListenerProvider) Listen(basePort int) (int, net.Listener, error) {
+	return GetAvailablePort(basePort)
+}
+
+func GetAvailablePort(basePort int) (int, net.Listener, error) {
 	var ln net.Listener
 	var err error
 
@@ -14,11 +19,9 @@ func GetAvailablePort(basePort int) (int, net.Listener) {
 		tryPort := basePort + i
 		ln, err = net.Listen("tcp", fmt.Sprintf(":%d", tryPort))
 		if err == nil {
-			return tryPort, ln
+			return tryPort, ln, nil
 		}
 	}
 
-	fmt.Println("Error: All three ports are in use. The app cannot be started.")
-	os.Exit(1)
-	return 0, nil
+	return 0, nil, fmt.Errorf("all three ports are in use; app cannot be started")
 }

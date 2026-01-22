@@ -7,6 +7,12 @@ import (
 	"net/http"
 )
 
+type ServerStarter struct{}
+
+func (ServerStarter) Start(register func(mux *http.ServeMux), ln net.Listener) *http.Server {
+	return StartServer(register, ln)
+}
+
 func StartServer(register func(mux *http.ServeMux), ln net.Listener) *http.Server {
 
 	mux := http.NewServeMux()
