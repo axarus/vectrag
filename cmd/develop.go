@@ -1,16 +1,17 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
+	"context"
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 
+	"github.com/axarus/vectrag/internal/application"
+	infrahttp "github.com/axarus/vectrag/internal/infrastructure/http"
 	"github.com/spf13/cobra"
 )
 
-// developCmd represents the develop command
 var developCmd = &cobra.Command{
 	Use:   "develop",
 	Short: "A brief description of your command",
@@ -21,20 +22,30 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("develop called")
+		basePort := 51987
+		host := "localhost"
+
+		svc := application.NewDevelopService(
+			infrahttp.ListenerProvider{},
+			infrahttp.ServerStarter{},
+			infrahttp.AdminHandlerProvider{},
+		)
+
+		url, shutdown, err := svc.Start(basePort, host)
+		if err != nil {
+			fmt.Println("Error starting server:", err)
+			return
+		}
+		fmt.Println("Server started at", url)
+
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+		<-c
+		fmt.Println("Shutting down server...")
+		_ = shutdown(context.Background())
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(developCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// developCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// developCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
