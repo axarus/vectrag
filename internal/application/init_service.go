@@ -91,15 +91,15 @@ func (s *InitService) createDirectoryStructure(basePath string) error {
 
 // generateConfigFiles generates all configuration files from templates
 func (s *InitService) generateConfigFiles(basePath string, config InitConfig) error {
-	// Generate vectrag.config.yml (always in root)
-	if err := s.generateFile(basePath, "vectrag.config.yml", "vectrag.config.yml.tmpl", config); err != nil {
+	// Generate vectrag.config.yaml (always in root)
+	if err := s.generateFile(basePath, "vectrag.config.yaml", "vectrag.config.yaml.tmpl", config); err != nil {
 		return err
 	}
 
 	if err := s.generateFile(
 		filepath.Join(basePath, "config"),
-		"database.config.yml",
-		"database.config.yml.tmpl",
+		"database.config.yaml",
+		"database.config.yaml.tmpl",
 		config,
 	); err != nil {
 		return err
