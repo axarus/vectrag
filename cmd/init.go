@@ -22,7 +22,7 @@ var initCmd = &cobra.Command{
 and configuration files.
 
 This command will create:
-  - vectrag.config.yml (project configuration)
+  - vectrag.config.yaml (project configuration)
   - models/ (directory for model definitions)
   - config/(configuration files)
   - .vectrag/ (internal state directory)
