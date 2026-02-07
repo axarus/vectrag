@@ -20,12 +20,12 @@ func (ms *ModelService) Update(model domain.Model) error {
 	return ms.repo.UpdateModel(model)
 }
 
-func (ms *ModelService) Delete(id string) error {
-	return ms.repo.DeleteModel(id)
+func (ms *ModelService) Delete(slug string) error {
+	return ms.repo.DeleteModel(slug)
 }
 
-func (ms *ModelService) Get(id string) (domain.Model, error) {
-	return ms.repo.GetModel(id)
+func (ms *ModelService) Get(slug string) (domain.Model, error) {
+	return ms.repo.GetModel(slug)
 }
 
 func (ms *ModelService) List() ([]domain.Model, error) {
