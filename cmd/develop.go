@@ -30,6 +30,7 @@ This mode is intended for local environments and early-stage development.`,
 			infrahttp.ListenerProvider{},
 			infrahttp.ServerStarter{},
 			infrahttp.AdminHandlerProvider{},
+			infrahttp.APIRoutesProvider{},
 		)
 
 		url, shutdown, err := svc.Start(basePort, host)
